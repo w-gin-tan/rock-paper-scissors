@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getComputerChoice() {
+      const choices = ["rock", "paper", "scissors"];
+      let index = Math.floor(Math.random() * 3);
+      let choice = choices[index];
+      return choice;
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      // Variable to account for case-insensitivity
+      let playerSelectionCase = playerSelection.toLowerCase();
+      // Returning variable with decision string
+      let decision = "Invalid selection. Try again.";
+      
+      // Compare choices and decide winner
+      // If both choices are the same..
+      if (playerSelectionCase === computerSelection) {
+        // A tie occurs!
+        decision = "You tied!";
+      }
+      
+      // If both choices aren't the same..
+      if (playerSelectionCase !== computerSelection) {
+        // Check player and computer choices
+        // If player chooses rock:
+        if (playerSelectionCase === "rock") {
+          if (computerSelection === "scissors") {
+            decision = "You Won! Rock beats Scissors";
+          }
+          else if (computerSelection === "paper") {
+            decision = "You Lose! Paper beats Rock";
+          }
+        }
+
+        // If player chooses paper:
+        if (playerSelectionCase === "paper") {
+          if (computerSelection === "scissors") {
+            decision = "You Lose! Scissors beats Paper";
+          }
+          else if (computerSelection === "rock") {
+            decision = "You Won! Paper beats Rock";
+          }
+        }
+
+        // If player chooses scissors:
+        if (playerSelectionCase === "scissors") {
+          if (computerSelection === "paper") {
+            decision = "You Won! Scissors beats Paper";
+          }
+          else if (computerSelection === "rock") {
+            decision = "You Lose! Rock beats Scissors";
+          }
+        }
+      }
+
+      return decision;
+    }
+
+    function game() {
+      // Initialise variables for game handling.
+      let userChoice = "", computerChoice = "";
+      let userScore = 0, computerScore = 0;
+      let roundMessage = "", result = "";
+
+      // Round logic.
+      for (let i = 0; i < 5; i++) {
+        // Get choices from user and computer.
+        userChoice = prompt("Which will you choose? Rock, paper or scissors?: ");
+        computerChoice = getComputerChoice();
+
+        // Increment round scores based on decisions.
+        let round = playRound(userChoice, computerChoice);
+        console.log(round);
+        switch (round.substring(4, 5)) {
+          case 'W':
+            userScore += 1;
+            break;
+          case 'L':
+            computerScore += 1;
+            break;
+        }
+        roundMessage += round + "\n";
+      }
+
+      // Final results messages
+      console.log("Final results: \n" + roundMessage);
+      userScore > computerScore ? console.log("You are the winner!") : console.log("You are the loser!");
+    }
+
+    game()
+  </script>
+</body>
+</html>
