@@ -84,6 +84,16 @@
       body.style.justifyContent = 'center';
       body.style.alignItems = 'center';
 
+      // Creation of buttons div
+      const buttons = document.createElement('div');
+
+      // CSS styling of buttons
+      buttons.style.display = 'flex';
+      buttons.style.justifyContent = 'space-around';
+      buttons.style.alignItems = 'flex-end';
+      buttons.style.width = '300px';
+      buttons.style.height = '100px';
+
       // Final results messages
       console.log("Final results: \n" + roundMessage);
       userScore > computerScore ? console.log("You are the winner!") : console.log("You are the loser!");
