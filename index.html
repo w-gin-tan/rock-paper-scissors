@@ -92,7 +92,7 @@
       buttons.style.justifyContent = 'space-around';
       buttons.style.alignItems = 'flex-end';
       buttons.style.width = '300px';
-      buttons.style.height = '100px';
+      buttons.style.height = '25px';
 
       // Create buttons for rock, paper and scissors
       const rock = document.createElement('button');
@@ -113,6 +113,15 @@
       buttons.appendChild(paper);
       buttons.appendChild(scissors);
       body.appendChild(buttons);
+
+      // Obtain all button elements
+      // Loop through each of them for logic handling
+      const options = document.querySelectorAll("button");
+      for (const option of options) {
+        option.addEventListener('click', (e) => {
+          
+        });
+      }
 
       // Final results messages
       console.log("Final results: \n" + roundMessage);
