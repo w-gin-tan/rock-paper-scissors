@@ -69,7 +69,7 @@
       // Initialise variables for game handling.
       let userChoice = "", computerChoice = "";
       let userScore = 0, computerScore = 0;
-      let roundMessage = "", result = "";
+      let result = "";
 
       // Main webpage elements
       const html = document.querySelector('html');
@@ -119,7 +119,7 @@
       const options = document.querySelectorAll("button");
       for (const option of options) {
         option.addEventListener('click', (e) => {
-          
+          result = playRound(option.className, getComputerChoice());
         });
       }
 
