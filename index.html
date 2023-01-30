@@ -94,6 +94,22 @@
       buttons.style.width = '300px';
       buttons.style.height = '100px';
 
+      // Create buttons for rock, paper and scissors
+      const rock = document.createElement('button');
+      const paper = document.createElement('button');
+      const scissors = document.createElement('button');
+
+      // Element properties of buttons
+      rock.textContent = 'ROCK';
+      paper.textContent = 'PAPER';
+      scissors.textContent = 'SCISSORS';
+
+      // Insert elements into the DOM
+      buttons.appendChild(rock);
+      buttons.appendChild(paper);
+      buttons.appendChild(scissors);
+      body.appendChild(buttons);
+
       // Final results messages
       console.log("Final results: \n" + roundMessage);
       userScore > computerScore ? console.log("You are the winner!") : console.log("You are the loser!");
