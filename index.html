@@ -96,9 +96,9 @@
 
       // CSS styling of buttons
       buttons.style.display = 'flex';
-      buttons.style.justifyContent = 'center';
+      buttons.style.justifyContent = 'space-around';
       buttons.style.alignItems = 'flex-end';
-      buttons.style.width = '250px';
+      buttons.style.width = '500px';
       buttons.style.height = '25px';
 
       // Declare buttons for rock, paper and scissors
@@ -126,8 +126,11 @@
       // Loop through each of them for logic handling
       const options = document.querySelectorAll("button");
       for (const option of options) {
+        option.style.width = '100px';
+
         option.addEventListener('click', (e) => {
           roundMsg = playRound(option.className, getComputerChoice());
+          console.log(roundMsg);
         });
       }
 
