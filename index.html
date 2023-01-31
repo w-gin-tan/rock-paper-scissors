@@ -69,7 +69,7 @@
       // Initialise variables for game handling.
       let userChoice = "", computerChoice = "";
       let userScore = 0, computerScore = 0;
-      let result = "";
+      let roundMsg = "";
 
       // Main webpage elements
       const html = document.querySelector('html');
@@ -81,20 +81,27 @@
       body.style.margin = '0';
       body.style.padding = '0';
       body.style.display = 'flex';
+      body.style.flexDirection = 'column';
       body.style.justifyContent = 'center';
       body.style.alignItems = 'center';
 
-      // Creation of buttons div
+      // Declare results and score elements
+      const result = document.createElement('h1');
+      const score = document.createElement('div');
+
+      result.textContent = '0-0';
+
+      // Declare buttons div
       const buttons = document.createElement('div');
 
       // CSS styling of buttons
       buttons.style.display = 'flex';
-      buttons.style.justifyContent = 'space-around';
+      buttons.style.justifyContent = 'center';
       buttons.style.alignItems = 'flex-end';
-      buttons.style.width = '300px';
+      buttons.style.width = '250px';
       buttons.style.height = '25px';
 
-      // Create buttons for rock, paper and scissors
+      // Declare buttons for rock, paper and scissors
       const rock = document.createElement('button');
       const paper = document.createElement('button');
       const scissors = document.createElement('button');
@@ -112,6 +119,7 @@
       buttons.appendChild(rock);
       buttons.appendChild(paper);
       buttons.appendChild(scissors);
+      body.appendChild(result);
       body.appendChild(buttons);
 
       // Obtain all button elements
@@ -119,12 +127,11 @@
       const options = document.querySelectorAll("button");
       for (const option of options) {
         option.addEventListener('click', (e) => {
-          result = playRound(option.className, getComputerChoice());
+          roundMsg = playRound(option.className, getComputerChoice());
         });
       }
 
       // Final results messages
-      console.log("Final results: \n" + roundMessage);
       userScore > computerScore ? console.log("You are the winner!") : console.log("You are the loser!");
     }
 
