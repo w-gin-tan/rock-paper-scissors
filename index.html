@@ -34,7 +34,7 @@
         // If player chooses rock:
         if (playerSelectionCase === "rock") {
           if (computerSelection === "scissors") {
-            decision = "You Won! Rock beats Scissors";
+            decision = "You Win! Rock beats Scissors";
           }
           else if (computerSelection === "paper") {
             decision = "You Lose! Paper beats Rock";
@@ -47,14 +47,14 @@
             decision = "You Lose! Scissors beats Paper";
           }
           else if (computerSelection === "rock") {
-            decision = "You Won! Paper beats Rock";
+            decision = "You Win! Paper beats Rock";
           }
         }
 
         // If player chooses scissors:
         if (playerSelectionCase === "scissors") {
           if (computerSelection === "paper") {
-            decision = "You Won! Scissors beats Paper";
+            decision = "You Win! Scissors beats Paper";
           }
           else if (computerSelection === "rock") {
             decision = "You Lose! Rock beats Scissors";
@@ -86,10 +86,12 @@
       body.style.alignItems = 'center';
 
       // Declare results and score elements
-      const result = document.createElement('h1');
-      const score = document.createElement('div');
+      const score = document.createElement('h1');
+      const result = document.createElement('h3');
 
-      result.textContent = '0-0';
+      // Placeholder values
+      score.textContent = userScore + ' - ' + computerScore;
+      result.textContent = 'Choose rock, paper or scissors to start playing!';
 
       // Declare buttons div
       const buttons = document.createElement('div');
@@ -119,6 +121,7 @@
       buttons.appendChild(rock);
       buttons.appendChild(paper);
       buttons.appendChild(scissors);
+      body.appendChild(score);
       body.appendChild(result);
       body.appendChild(buttons);
 
@@ -130,7 +133,6 @@
 
         option.addEventListener('click', (e) => {
           roundMsg = playRound(option.className, getComputerChoice());
-          console.log(roundMsg);
         });
       }
 
