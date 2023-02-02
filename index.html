@@ -65,12 +65,7 @@
       return decision;
     }
 
-    function game() {
-      // Initialise variables for game handling.
-      let userChoice = "", computerChoice = "";
-      let userScore = 0, computerScore = 0;
-      let roundMsg = "";
-
+    function setup() {
       // Main webpage elements
       const html = document.querySelector('html');
       const body = document.querySelector('body');
@@ -90,7 +85,7 @@
       const result = document.createElement('h3');
 
       // Placeholder values
-      score.textContent = userScore + ' - ' + computerScore;
+      score.textContent = 0 + ' - ' + 0;
       result.textContent = 'Choose rock, paper or scissors to start playing!';
 
       // Declare buttons div
@@ -117,6 +112,11 @@
       paper.textContent = 'PAPER';
       scissors.textContent = 'SCISSORS';
 
+      rock.style.width = '100px';
+      paper.style.width = '100px';
+      scissors.style.width = '100px';
+
+
       // Insert elements into the DOM
       buttons.appendChild(rock);
       buttons.appendChild(paper);
@@ -124,20 +124,50 @@
       body.appendChild(score);
       body.appendChild(result);
       body.appendChild(buttons);
+    }
 
-      // Obtain all button elements
-      // Loop through each of them for logic handling
-      const options = document.querySelectorAll("button");
-      for (const option of options) {
-        option.style.width = '100px';
+    function game() {
+      // DOM Setup
+      setup();
 
-        option.addEventListener('click', (e) => {
-          roundMsg = playRound(option.className, getComputerChoice());
-        });
-      }
+      // Initialise game score variables
+      let userScore = 0, computerScore = 0;
 
-      // Final results messages
-      userScore > computerScore ? console.log("You are the winner!") : console.log("You are the loser!");
+      // Obtain button div element
+      // Add an event listener to button div to handle click events
+      const buttons = document.querySelector('div');
+      
+      buttons.addEventListener('click', function handler(e) {
+        if (e.target && e.target.nodeName == 'BUTTON' ) {
+          let roundMsg = playRound(e.target.className, getComputerChoice()); 
+
+          // Logic for score and result divs
+          if (roundMsg.includes('Win')) {
+            userScore++;
+          }
+          else if (roundMsg.includes('Lose')) {
+            computerScore++;
+          }
+
+          // If either the user or computer wins
+          // Remove the click event listener to prevent further gameplay
+          // Game has ended
+          if (userScore == 5) {
+            roundMsg = 'You won the game!';
+            this.removeEventListener('click', handler);
+          }
+          else if (computerScore == 5) {
+            roundMsg = 'You lost the game!';
+            this.removeEventListener('click', handler);
+          }
+
+          // Display the score and results on page every turn
+          const score = document.querySelector('h1');
+          const result = document.querySelector('h3');
+          score.textContent = userScore + ' - ' + computerScore;
+          result.textContent = roundMsg;
+        }
+      });
     }
 
     game()
